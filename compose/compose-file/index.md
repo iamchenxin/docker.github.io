@@ -20,7 +20,34 @@ There are several versions of the Compose file format – 1, 2, 2.x, and 3.x. Th
 table below is a quick look. For full details on what each version includes and
 how to upgrade, see **[About versions and upgrading](compose-versioning.md)**.
 
-{% include content/compose-matrix.md %}
+This table shows which Compose file versions support specific Docker releases.
+
+| **Compose file format** | **Docker Engine release** |
+|  -------------------    |    ------------------     |
+|      3.8                |       19.03.0+            |
+|      3.7                |       18.06.0+            |
+|      3.6                |       18.02.0+            |
+|      3.5                |       17.12.0+            |
+|      3.4                |       17.09.0+            |
+|      3.3                |       17.06.0+            |
+|      3.2                |       17.04.0+            |
+|      3.1                |       1.13.1+             |
+|      3.0                |       1.13.0+             |
+|      2.4                |       17.12.0+            |
+|      2.3                |       17.06.0+            |
+|      2.2                |       1.13.0+             |
+|      2.1                |       1.12.0+             |
+|      2.0                |       1.10.0+             |
+|      1.0                |       1.9.1.+             |
+
+In addition to Compose file format versions shown in the table, the Compose
+itself is on a release schedule, as shown in [Compose
+releases](https://github.com/docker/compose/releases/), but file format versions
+do not necessarily increment with each release. For example, Compose file format
+3.0 was first introduced in [Compose release
+1.10.0](https://github.com/docker/compose/releases/tag/1.10.0), and versioned
+gradually in subsequent releases.
+
 
 ## Compose file structure and examples
 
@@ -143,10 +170,7 @@ Compose file.
 
 ## Service configuration reference
 
-The Compose file is a [YAML](http://yaml.org/) file defining
-[services](#service-configuration-reference),
-[networks](#network-configuration-reference) and
-[volumes](#volume-configuration-reference).
+The Compose file is a [YAML](http://yaml.org/) file defining [services](#service-configuration-reference), [networks](#network-configuration-reference) and [volumes](#volume-configuration-reference). 
 The default path for a Compose file is `./docker-compose.yml`.
 
 > **Tip**: You can use either a `.yml` or `.yaml` extension for this file.

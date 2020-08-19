@@ -6,11 +6,7 @@ title: Networking in Compose
 
 > This page applies to Compose file formats [version 2](compose-file/compose-file-v2.md) and [higher](compose-file/index.md). Networking features are not supported for Compose file [version 1 (legacy)](compose-file/compose-file-v1.md).
 
-By default Compose sets up a single
-[network](../engine/reference/commandline/network_create.md) for your app. Each
-container for a service joins the default network and is both *reachable* by
-other containers on that network, and *discoverable* by them at a hostname
-identical to the container name.
+By default Compose sets up a single [network](../engine/reference/commandline/network_create.md) for your app. Each container for a service joins the default network and is both *reachable* by other containers on that network, and *discoverable* by them at a hostname identical to the container name.
 
 > **Note**: Your app's network is given a name based on the "project name",
 > which is based on the name of the directory it lives in. You can override the
@@ -33,10 +29,8 @@ For example, suppose your app is in a directory called `myapp`, and your `docker
 When you run `docker-compose up`, the following happens:
 
 1.  A network called `myapp_default` is created.
-2.  A container is created using `web`'s configuration. It joins the network
-    `myapp_default` under the name `web`.
-3.  A container is created using `db`'s configuration. It joins the network
-    `myapp_default` under the name `db`.
+2.  A container is created using `web`'s configuration. It joins the network `myapp_default` under the name `web`.
+3.  A container is created using `db`'s configuration. It joins the network `myapp_default` under the name `db`.
 
 > **In v2.1+, overlay networks are always `attachable`**
 >
@@ -47,20 +41,11 @@ When you run `docker-compose up`, the following happens:
 > In Compose file format 3.x, you can optionally set the `attachable` property
 > to `false`.
 
-Each container can now look up the hostname `web` or `db` and
-get back the appropriate container's IP address. For example, `web`'s
-application code could connect to the URL `postgres://db:5432` and start
-using the Postgres database.
+Each container can now look up the hostname `web` or `db` and get back the appropriate container's IP address. For example, `web`'s application code could connect to the URL `postgres://db:5432` and start using the Postgres database.
 
-It is important to note the distinction between `HOST_PORT` and `CONTAINER_PORT`.
-In the above example, for `db`, the `HOST_PORT` is `8001` and the container port is
-`5432` (postgres default). Networked service-to-service
-communication use the `CONTAINER_PORT`. When `HOST_PORT` is defined,
-the service is accessible outside the swarm as well.
+It is important to note the distinction between `HOST_PORT` and `CONTAINER_PORT`. In the above example, for `db`, the `HOST_PORT` is `8001` and the container port is `5432` (postgres default). Networked service-to-service communication use the `CONTAINER_PORT`. When `HOST_PORT` is defined, the service is accessible outside the swarm as well.
 
-Within the `web` container, your connection string to `db` would look like
-`postgres://db:5432`, and from the host machine, the connection string would
-look like `postgres://{DOCKER_IP}:8001`.
+Within the `web` container, your connection string to `db` would look like `postgres://db:5432`, and from the host machine, the connection string would look like `postgres://{DOCKER_IP}:8001`.
 
 ## Update containers
 
